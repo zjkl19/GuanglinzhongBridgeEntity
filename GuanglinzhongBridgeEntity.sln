@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GuanglinzhongBridgeEntity", "GuanglinzhongBridgeEntity\GuanglinzhongBridgeEntity.pyproj", "{B8E4517A-F21F-4FA7-9C61-BFF1C15E4C70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8E4517A-F21F-4FA7-9C61-BFF1C15E4C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E4517A-F21F-4FA7-9C61-BFF1C15E4C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E16B7C1E-BD72-474D-BB38-0EC5BC9B0FFB}
+	EndGlobalSection
+EndGlobal
