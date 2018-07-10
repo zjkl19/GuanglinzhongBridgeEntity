@@ -146,3 +146,37 @@ a.LinearInstancePattern(instanceList=('middleBeamPart-1', ), direction1=(1.0,
 a = mdb.models['GuanglinzhongBridge'].rootAssembly
 a.translate(instanceList=('sideBeamPart-1', ), vector=(16.505, 0.0, 0.0))
 #: The instance sideBeamPart-1 was translated by 16.505, 0., 0. with respect to the assembly coordinate system
+
+a = mdb.models['GuanglinzhongBridge'].rootAssembly
+p = mdb.models['GuanglinzhongBridge'].parts['sideBeamPart']
+a.Instance(name='sideBeamPart-2', part=p, dependent=ON)
+a.rotate(instanceList=('sideBeamPart-2', ), axisPoint=(0.7475, 0.0, 10.0), 
+    axisDirection=(0.0, 1.0, 0.0), angle=180.0)
+
+a = mdb.models['GuanglinzhongBridge'].rootAssembly
+a.InstanceFromBooleanMerge(name='PartAll', instances=(
+    a.instances['middleBeamPart-1'], a.instances['shellPart-1'], 
+    a.instances['sideBeamPart-1'], 
+    a.instances['middleBeamPart-1-lin-2-1'], 
+    a.instances['middleBeamPart-1-lin-3-1'], 
+    a.instances['middleBeamPart-1-lin-4-1'], 
+    a.instances['middleBeamPart-1-lin-5-1'], 
+    a.instances['middleBeamPart-1-lin-6-1'], 
+    a.instances['middleBeamPart-1-lin-7-1'], 
+    a.instances['middleBeamPart-1-lin-8-1'], 
+    a.instances['middleBeamPart-1-lin-9-1'], 
+    a.instances['middleBeamPart-1-lin-10-1'], 
+    a.instances['middleBeamPart-1-lin-11-1'], 
+    a.instances['middleBeamPart-1-lin-12-1'], 
+    a.instances['sideBeamPart-2'], ), 
+    originalInstances=SUPPRESS, domain=GEOMETRY)
+
+#Create Step
+mdb.models['GuanglinzhongBridge'].StaticStep(name='Step-1', previous='Initial')
+
+a = mdb.models['GuanglinzhongBridge'].rootAssembly
+e1 = a.instances['PartAll-1'].edges
+edges1 = e1.findAt(((1.18375, 0.0, 20.0), ), ((2.435, 0.0, 20.0), ))
+region = regionToolset.Region(edges=edges1)
+mdb.models['GuanglinzhongBridge'].EncastreBC(name='BC-1', 
+    createStepName='Step-1', region=region, localCsys=None)
