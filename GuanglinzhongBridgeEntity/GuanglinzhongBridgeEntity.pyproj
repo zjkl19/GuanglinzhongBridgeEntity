@@ -21,11 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GuanglinzhongBridgeEntity-CityA.py" />
     <Compile Include="GuanglinzhongBridgeEntity.py" />
     <Compile Include="GuanglinzhongBridgeEntity02.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppSettings.json" />
+    <Content Include="cp.bat" />
+    <Content Include="main.bat" />
+    <Content Include="光林中桥Abaqus坐标示意图.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
