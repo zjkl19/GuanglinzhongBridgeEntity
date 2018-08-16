@@ -495,6 +495,50 @@ a = mdb.models['GuanglinzhongBridge'].rootAssembly
 #    couplingType=DISTRIBUTING, weightingMethod=UNIFORM, localCsys=None, u1=ON, 
 #    u2=ON, u3=ON, ur1=ON, ur2=ON, ur3=ON)
 
+#set vehicle load lines
+vehicleLineKPoint=(((4.125,1,0),(7.375,1,0),(11.125,1,0),(14.875,1,0)),\
+    ((4.125,1,span),(7.375,1,span),(11.125,1,span),(14.875,1,span)))
+
+DatumPointId=[[0,0,0,0],[0,0,0,0]]
+
+for i in range(0,len(vehicleLineKPoint)):
+    for j in range(0,len(vehicleLineKPoint[i])):
+        DatumPointId[i][j]=a.DatumPointByCoordinate(coords=vehicleLineKPoint[i][j])
+
+#ToDo like:
+#l2=map(lambda x,y:[(x[0]+y[0])/2,(x[1]+y[1])/2,(x[2]+y[2])/2],[1,2,3],[1,2,3])
+refPointsId=[0,0,0,0]
+cLoadrefPointsId=[0,0,0,0]
+for i in range(0,len(refPointsId)):
+    pt=((vehicleLineKPoint[0][i][0]+vehicleLineKPoint[1][i][0])/2,\
+        (vehicleLineKPoint[0][i][1]+vehicleLineKPoint[1][i][1])/2,(vehicleLineKPoint[0][i][2]+vehicleLineKPoint[1][i][2])/2)   
+    ref=a.ReferencePoint(point=pt)
+    refPointsId[i]=ref.id
+    #ref=a.ReferencePoint(point=pt)
+    #cLoadrefPointsId=ref.id
+
+#test code
+for i in range(0,len(cLoadrefPointsId)):
+    pt=((vehicleLineKPoint[0][i][0]+vehicleLineKPoint[1][i][0])/2,\
+        (vehicleLineKPoint[0][i][1]+vehicleLineKPoint[1][i][1])/2,(vehicleLineKPoint[0][i][2]+vehicleLineKPoint[1][i][2])/2+0.1)   
+    ref=a.ReferencePoint(point=pt)
+    cLoadrefPointsId=ref.id
+
+#obsoleted code
+#vehicleLineKPoint=(4.125,7.375,11.125,14.875)
+#vehicleLineZPoint=(0,span)
+
+#edgeLengh=18
+
+#for i in range(0,len(vehicleLineKPoint)):
+#    for j in range(0,len(vehicleLineZPoint)):
+#        e1 = a.instances['shellPart-1'].edges
+#        if(i==0):
+#            pickedEdges = e1.findAt(((vehicleLineKPoint[i], 1.0, vehicleLineZPoint[j]), ))
+#            a.PartitionEdgeByParam(edges=pickedEdges, parameter=vehicleLineKPoint[i]/edgeLengh)
+#        else:
+#            pickedEdges = e1.findAt((((vehicleLineKPoint[i]-vehicleLineKPoint[i-1]), 1.0, vehicleLineZPoint[j]), ))
+#            a.PartitionEdgeByParam(edges=pickedEdges, parameter=(vehicleLineKPoint[i]-vehicleLineKPoint[i-1])/(edgeLengh-vehicleLineKPoint[i-1]))
 #tuplePoint=((8.475,1,5),(6.575,1,5),(8.475,1,8.65),(6.575,1,8.65),(8.475,1,10),(6.575,1,10),
 #    (3.375,1,5),(5.275,1,5),(3.375,1,8.65),(5.275,1,8.65),(3.375,1,10),(5.275,1,10),
 #    (3.375,1,14),(5.275,1,14),(3.375,1,15.35),(5.275,1,15.35),(3.375,1,19),(5.275,1,19))
